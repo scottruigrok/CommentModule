@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script>
+        function forEachNode(nodeList, func) {
+            var i, n = nodeList.length;
+            for (i = 0; i < n; i++) {
+                func(nodeList[i], i, nodeList);
+            }
+        }
+        window.addEventListener('load', mInit, false);
+
+        function typeWriter(el) {
+            var myDelay = el.getAttribute('keyDelay');
+            if (el.getAttribute('curIndex') == undefined) el.setAttribute('curIndex', 0);
+            var curIndex = el.getAttribute('curIndex');
+            var curStr = el.getAttribute('typewriterdata');
+            el.innerHTML += curStr.charAt(curIndex);
+            curIndex++;
+            el.setAttribute('curIndex', curIndex);
+            if (curIndex < curStr.length) setTimeout(callback, myDelay);
+            else {
+                if (el.getAttribute('nextline') != undefined) {
+                    var nextTgt = el.getAttribute('nextline');
+                    typeWriter(document.getElementById(nextTgt));
+                }
+            }
+
+            function callback() {
+                typeWriter(el);
+            }
+        }
+
+        function mInit() {
+            typeWriter(document.getElementById('line1'));
+            var i, n, elementList;
+            elementList = document.getElementsByClassName('autoType');
+            forEachNode(elementList, typeWriter);
+            //  n = elementList.length;
+            //  for (i=0; i<n; i++)
+            //      typeWriter( elementList[i] );
+        }
+    </script>
+    <style>
+        .multi {
+            border: solid 2px #333333;
+        }
+    </style>
+</head>
+
+<body>
+    <div class='autoType' typewriterdata='Enter this string letter by letter' keydelay='300'></div>
+    <div class='autoType' typewriterdata='Enter this string letter by letter' keydelay='200'></div>
+    <div class='autoType' typewriterdata='This is short but slooooow' keydelay='1000'></div>
+    <div class='autoType' typewriterdata='The rain falls mainly on the plain in Spain' keydelay='100'></div>
+    <div class='multi'>
+        <div id='line1' typewriterdata='This is line 1' keydelay='300' nextline='line2'></div>
+        <div id='line2' typewriterdata='This is line 2' keydelay='300' nextline='line3'></div>
+        <div id='line3' typewriterdata='This is line 3' keydelay='300' nextline='line4'></div>
+        <div id='line4' typewriterdata='This is line 4' keydelay='300'></div>
+    </div>
+</body>
+
+</html>
