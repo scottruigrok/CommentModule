@@ -16,7 +16,7 @@ If you want the files you can download the zip. If you just want to look at the 
 I made a jsfiddle, so you can take a look at the code and if you want to you could change it and save it for your own use.
 https://jsfiddle.net/scottie7/zsgxks17/
 
-There is still something that is wrong, if you run the code long enough you will see it for yourself. The speed at which the text is typed increases with each loop. I will have to fix that in the future.
+The module is not complete because it has to be changed on the inside rather than be called upon with parameters from outside the module like a module should do. Im working on this.
 
 ## Contributors
 Scott Ruigrok - Website is coming
